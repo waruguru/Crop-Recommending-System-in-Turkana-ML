@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <style>
+      .content {
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Crops</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item active">
+              <a class="nav-link" aria-current="page" href="/">Crops</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <button class="btn btn-outline-primary" type="submit">
+              Log In
+            </button>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container content">
+      <div class="bg-light p-5 rounded">
+        <h1>Crops content</h1>
+        <p class="lead">Replace this content with the data from the backend</p>
+      </div>
+    </main>
+
+    <script
+      src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      mendeleyWebImporter = {
+        downloadPdfs(t) {
+          return this._call("downloadPdfs", [t]);
+        },
+        open() {
+          return this._call("open", []);
+        },
+        _call(methodName, methodArgs) {
+          window.postMessage(
+            { token: "0.5495842948472207", methodName, methodArgs },
+            "https://getbootstrap.com"
+          );
+          return new Promise((resolve) => {
+            const listener = window.addEventListener("message", (event) => {
+              const data = event.data;
+              if (typeof data !== "object" || !("result" in data)) return;
+              window.removeEventListener("message", listener);
+              resolve(data.result);
+            });
+          });
+        },
+      };
+    </script>
+  </body>
+</html>
